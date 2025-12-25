@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 // --- 1. THEMES CONFIGURATION ---
 const THEMES: Record<string, {
@@ -261,6 +262,19 @@ export default function WishCard({
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+
+      <div className="fixed bottom-6 w-full text-center z-50 pointer-events-none">
+        <p className="text-[10px] tracking-[0.4em] uppercase opacity-40 text-white font-sans font-light">
+          Built by{" "}
+          <Link 
+            href="https://github.com/Verifieddanny" 
+            target="_blank" 
+            className="font-bold border-b border-transparent hover:border-white transition-colors pointer-events-auto"
+          >
+            Devdanny
+          </Link>
+        </p>
       </div>
     </div>
   );

@@ -10,10 +10,12 @@ export const size = {
 export const contentType = 'image/png'
 export const alt = 'Christmas Greeting'
 
-export default async function Image({ params }: { params: { id: string } }) {
+export default async function OpenGraphImage({ params }: { params: { id: string } }) {
+    const { id } = await params;
+
     const wish = await prisma.wish.findUnique({
-        where: { id: params.id },
-    })
+        where: { id: id },
+    });
 
     if (!wish) {
         return new ImageResponse(
