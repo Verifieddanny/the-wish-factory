@@ -232,6 +232,8 @@ export default function WishCard({
                   <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                     {occasion === "NEW_YEAR" ? "Happy New Year" : "Merry Christmas"}
                   </h1>
+
+                  <p className="text-left">To {receiver}</p>
                   <div className={`w-24 h-1 mx-auto mt-6 opacity-40 ${theme.accentColor.replace('border', 'bg')}`}></div>
                 </motion.div>
 
