@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 interface SharePageProps {
-    params: Promise<{ id: string }>;
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: SharePageProps): Promise<Metadata> {
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: SharePageProps): Promise<Meta
     };
   }
 
-  const title = wish.occasion === "NEW_YEAR" 
+  const title = wish.occasion === "NEW_YEAR"
     ? `Happy New Year from ${wish.sender}! 🎆`
     : `Merry Christmas from ${wish.sender}! 🎄`;
 
@@ -31,32 +31,34 @@ export async function generateMetadata({ params }: SharePageProps): Promise<Meta
       title: title,
       description: `For ${wish.receiver}`,
       type: "article",
+      images: "https://the-wish-factory.vercel.app/og-image.png",
+
     },
   };
 }
 
 
 export default async function SharePage({ params }: SharePageProps) {
-    const { id } = await params;
+  const { id } = await params;
 
 
 
-    const wish = await prisma.wish.findUnique({
-        where: { id }
-    })
+  const wish = await prisma.wish.findUnique({
+    where: { id }
+  })
 
 
-    if (!wish) {
-        notFound();
-    }
-    return (
-        <WishCard
-            sender={wish.sender}
-            receiver={wish.receiver}
-            message={wish.message}
-            occasion={wish.occasion}
-            songId={wish.songId}
-            styleVariant={wish.styleVariant}
-        />
-    )
+  if (!wish) {
+    notFound();
+  }
+  return (
+    <WishCard
+      sender={wish.sender}
+      receiver={wish.receiver}
+      message={wish.message}
+      occasion={wish.occasion}
+      songId={wish.songId}
+      styleVariant={wish.styleVariant}
+    />
+  )
 }
